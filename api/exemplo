@@ -1,0 +1,2 @@
+GET /weather?q=Lisboa&appid=YOUR_API_KEY HTTP/1.1
+Host: api.openweathermap.org

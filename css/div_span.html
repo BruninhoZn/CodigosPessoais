@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div & Span</title>
+    
+    <style type="text/css">
+    
+        #Topo {
+            background-color: cyan;
+        }
+        
+        #conteudo { /* isto é uma classe*/
+            background-color: red;
+        }
+        #rodape {
+            color: wheat;
+            background-color: green;
+        }
+        #assinatura {
+            color: black;
+            background-color: pink;
+        }
+        .produto { /* isto é um identifcador*/
+            background-color: gray;
+            margin: 10px; /* margin é o espaçamento*/
+            padding: 10px;/*A propriedade padding define uma a distância entre o conteúdo de um elemento e suas bordas*/
+        }
+        .azul{
+            color:blue
+        }
+
+    
+    </style>
+
+    </head>
+    <body>
+
+
+        <div id="Topo">
+
+            <img src="https://psxbrasil.com.br/wp-content/uploads/2021/02/Amazon-Logo.jpg" width="200"  height="100">
+            <ul>
+                <li>Home </li>
+                <li>Produtos</li>
+                <li>Contatos</li>
+            </ul>
+
+        </div>
+        
+        <div id="conteudo">
+                <div class="produto">
+                    Produto 1
+                </div>
+                <div class="produto">
+                    Produto 2
+                </div>
+                <div class="produto">
+                    Produto 3
+                </div>
+
+
+
+        </div>
+        <div id="rodape"> 
+
+            Todos os <span class="azul"> direitos </span>reservados
+             
+
+        </div>
+
+        <span id="assinatura"> 
+            Jamilton <!-- inline -->
+        </span>
+
+        <span id="assinatura"> 
+            Damasceno <!-- inline -->
+        </span>
+        <div>
+            <span id="assinatura">
+                Bruno Merullo
+
+            </span>
+        </div>
+    
+</body>
+    </html>

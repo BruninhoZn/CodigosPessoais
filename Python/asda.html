@@ -1,0 +1,2437 @@
+
+
+
+<!DOCTYPE html>
+<html lang="pt" dir="ltr" wf-loading>
+    <head>
+        
+    
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+
+
+    <script>
+        window.newrelicAttributes = {
+            accountId: "1796917",
+            trustKey: "1796917",
+            agentId: "149134891",
+            licenseKey: "f701a6c63c",
+            applicationId: "149134891"
+        };
+    </script>
+    <script src="/newrelic.js"></script>
+
+
+
+<!-- Compliant Google Optimize -->
+<script>
+        (() => {
+            const getPrivacyCookie = () => {
+                const privacyCookie = document.cookie.match('(^|;)\\s*cmapi_cookie_privacy\\s*=\\s*([^;]+)');
+
+                return privacyCookie ? privacyCookie.pop() : null;
+            };
+
+            const getBehaviorCookie = () => {
+                const behaviorCookie = document.cookie.match('(^|;)\\s*notice_behavior\\s*=\\s*([^;]+)');
+
+                return behaviorCookie ? behaviorCookie.pop() : null;
+            };
+
+            const hasOptedIn = () => {
+                const behaviorCookie = getBehaviorCookie();
+                const privacyCookie = getPrivacyCookie();
+
+                return behaviorCookie && behaviorCookie.match(/^none$/) || privacyCookie && privacyCookie.match(/2|3/);
+            }
+
+            const appendOptimize = () => {
+                const head = document.getElementsByTagName('head')[0];
+
+                if (head) {
+                    const script = document.createElement('script');
+
+                    script.src = 'https://www.googleoptimize.com/optimize.js?id=GTM-M6BQF2W';
+                    script.id = "google-optimize"
+                    head.append(script);
+                }
+            };
+
+            const removeOptimize = () => {
+                const head = document.getElementsByTagName('head')[0];
+                const optimizeScript = document.getElementById('google-optimize');
+
+                if (head && optimizeScript) {
+                    head.removeChild(optimizeScript);
+                }
+            }
+
+            /**
+             * Append or remove Google Optimize script to head,
+             * depending on whether user's cookie preferences
+             * have opted in and Google Optimize script already
+             * exists in head.
+             */
+            const handleConsentDecision = () => {
+                const googleOptimizeScript = document.getElementById('google-optimize');
+                if (hasOptedIn() && !googleOptimizeScript) {
+                    appendOptimize();
+                } else if (!hasOptedIn() && googleOptimizeScript) {
+                    removeOptimize();
+                }
+            }
+
+            /**
+             * Callbacks will occur in the form of a PostMessage event. This code listens for the
+             * appropriately formatted PostMessage event, gets the new consent decision, and then sets
+             * the new cookie preferences.
+             */
+            const handlePreferencesUpdated = (e) => {
+                try {
+                    const { capabilities, action } = JSON.parse(e.data).PrivacyManagerAPI || {};
+                    if (capabilities && action === 'getConsentDecision') {
+                        handleConsentDecision();
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            /**
+             * Registers with the TrustArc Content Manager (CM) API to receive callbacks when
+             * a preference update occurs, and initialized dispatched preferences array to
+             * the user's current preferences. You must wait for the CM API (PrivacyManagerAPI object)
+             * to exist on the page before registering.
+             */
+            const CMICallbackRegister = () => {
+                const interval = setInterval(() => {
+                    if (window.PrivacyManagerAPI && interval) {
+                        const apiObject = {
+                            PrivacyManagerAPI: {
+                                action: 'getConsentDecision',
+                                timestamp: new Date().getTime(),
+                                self: window.location.host
+                            }
+                        };
+                        window.top.postMessage(JSON.stringify(apiObject), '*');
+                        clearInterval(interval);
+                    }
+                }, 50);
+            }
+
+            /**
+             * Listener registers a message callback on the TrustArc Content Manager when
+             * user's cookie preferences are updated and adds an event listener
+             * on the message events that occur when said preference updates occur.
+             */
+            const trustArcScriptLoadListener = () => {
+                if (typeof window.truste === 'object') {
+                    CMICallbackRegister();
+                    window.addEventListener('message', handlePreferencesUpdated);
+                }
+            }
+
+            window.addEventListener('load', trustArcScriptLoadListener);
+            const behaviorCookie = getBehaviorCookie();
+
+            if (behaviorCookie === null) {
+                // wait for TrustArc script to load before checking cookies
+                let numIntervals = 0;
+                const scriptLoadInterval = setInterval( () => {
+                    if(getBehaviorCookie()) {
+                        handleConsentDecision();
+                        clearInterval(scriptLoadInterval);
+                    }
+                    // Stop running interval after 8 times (8x the documented 500ms it
+                    // should take to load the TrustArc script on the BE) to prevent running forever
+                    if (++numIntervals >= 10) {
+                        clearInterval(scriptLoadInterval);
+                    }
+                } , 500);
+            } else {
+                handleConsentDecision();
+            }
+        })();
+</script>
+    <!-- End Compliant Google Optimize -->
+
+
+<!-- Google Tag Manager -->
+<script>
+    (function(w, d, s, l) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l !== 'dataLayer' ? '&l=' + l : '';
+
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-TG32RCX' + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer');
+</script>
+<!-- End Google Tag Manager -->
+
+
+
+<style>
+    [unresolved] {
+        visibility: hidden !important;
+    }
+</style>
+
+
+<noscript>
+    <style>
+        [unresolved] {
+            visibility: visible !important;
+        }
+    </style>
+</noscript>
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    .image img {
+        max-width: 100%;
+    }
+</style>
+
+
+<script>
+    
+    if (!CSS.supports('width', 'calc((var(--test))')) {
+        window.ShadyCSS = {
+            shimcssproperties: true
+        };
+    }
+
+    document.addEventListener('nds.typeKit.active', function() {
+        document.querySelector('html').removeAttribute('wf-loading');
+    });
+</script>
+
+<script src="//unpkg.com/@webcomponents/webcomponentsjs@2.2.7/webcomponents-loader.js"
+    integrity="sha384-3HK5hxQbkFqOIxMbpROlRmRtYl2LBZ52t+tqcjzsmr9NJuOWQxl8RgQSyFvq2lhy"
+    crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"
+    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+    crossorigin="anonymous"></script>
+<script src="//w.soundcloud.com/player/api.js"></script>
+
+
+
+
+
+
+<script>
+    window.nds = window.nds || {};
+    window.nds.componentUrlPrefix = '//pl.ea.com/release/4.65.0/elements/ea-elements.min.js'.substring(0, '//pl.ea.com/release/4.65.0/elements/ea-elements.min.js'.lastIndexOf('/') + 1);
+    window.nds.contentfulUrl = 'https://contentful-proxy.juno.ea.com/graphql';
+    window.nds.salUrl = 'https://service-aggregation-layer.juno.ea.com/graphql';
+    window.nds.useApq = true;
+    window.nds.salClientId = 'eacom-fe';
+    window.nds.xGameDistMethod = 'eacom';
+    window.nds.lockboxGameId = 'eacom';
+    window.nds.lockboxInvoiceSource = 'EACOM-STORE-WEB-%countryCode%';
+    window.nds.lockboxExternalPaymentPath = '/lockbox-external-payment';
+</script>
+
+
+
+<script type="module" src="//pl.ea.com/release/4.65.0/elements/ea-elements.min.js"></script>
+<script nomodule defer src="//pl.ea.com/release/4.65.0/elements/ea-elements.min.js"></script>
+
+
+
+    
+        
+            
+                <style>@font-face { font-family: 'BluuNext-Bold'; src: url(/assets/fonts/skate/BluuNext-Bold.otf); }</style>
+            
+                <link href="https://fast.fonts.net/cssapi/d0eed14c-f8ab-45aa-a8f2-f27a01454c0b.css" rel="stylesheet" />
+            
+                <style>html { 	scroll-behavior: smooth; scroll-padding-top: 6rem;}</style>
+            
+        
+    
+
+<style>
+    @font-face {
+    font-family: 'ElectronicArtsDisplay';
+    src: url(/assets/fonts/display/ElectronicArtsDisplay-Regular.woff2) format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsDisplay';
+    src: url(/assets/fonts/display/ElectronicArtsDisplay-Bold.woff2) format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Light.woff2) format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-LightItalic.woff2) format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Regular.woff2) format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Italic.woff2) format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Bold.woff2) format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-BoldItalic.woff2) format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+</style>
+
+
+
+
+
+
+    <title>Registro nos testes de jogo do skate. – Electronic Arts</title>
+    
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Registro nos testes de jogo do skate. – Electronic Arts">
+<meta property="og:description" content="Inscreva-se aqui para participar do programa de testes de jogo do skate. insider.  ">
+
+    <meta property="og:url" content="https://www.ea.com/pt-br/games/skate/insider-playtest-registration">
+
+<meta property="og:site_name" content="Electronic Arts Inc.">
+
+    <meta property="og:image" content="https://media.contentapi.ea.com/content/dam/eacom/skate/images/2021/07/skte-feature-image.jpg.adapt.crop191x100.1200w.jpg">
+
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="628">
+
+
+<meta name="description" content="Inscreva-se aqui para participar do programa de testes de jogo do skate. insider.  ">
+<meta name="author" content="Electronic Arts">
+<meta property="article:modified_time" content="2022-06-29T08:07:33Z">
+<meta property="article:published_time" content="2022-06-30T16:00+02:00">
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ea">
+<meta name="twitter:title" content="Registro nos testes de jogo do skate. – Electronic Arts">
+<meta name="twitter:description" content="Inscreva-se aqui para participar do programa de testes de jogo do skate. insider.  ">
+
+    <meta name="twitter:image" content="https://media.contentapi.ea.com/content/dam/eacom/skate/images/2021/07/skte-feature-image.jpg.adapt.crop16x9.1023w.jpg">
+
+<meta name="twitter:creator" content="@ea">
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+     
+"image": {
+    "@type": "ImageObject",
+    "url": "https://media.contentapi.ea.com/content/dam/eacom/skate/images/2021/07/skte-feature-image.jpg.adapt.crop191x100.1200w.jpg"
+},
+ 
+    "author": {
+      "@type": "Organization",
+      "name": "Electronic Arts",
+      "sameAs": "https://en.wikipedia.org/wiki/Electronic_Arts"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Electronic Arts",
+        "sameAs": "https://en.wikipedia.org/wiki/Electronic_Arts",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://media.contentapi.ea.com/content/dam/ea/EA_logo.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "inLanguage": "pt",
+    "description": "Inscreva-se aqui para participar do programa de testes de jogo do skate. insider.  ",
+    "datePublished": "2022-06-30T16:00+02:00",
+    "dateModified": "2022-06-29T08:07:33Z",
+    "headline": "Registro nos testes de jogo do skate. – Electronic Arts",
+    "url": "https://www.ea.com/pt-br/games/skate/insider-playtest-registration"
+}
+</script>
+
+
+
+    <script >bazadebezolkohpepadr="1179312618"</script><script type="text/javascript" src="https://www.ea.com/akam/13/464ae2be"  defer></script></head>
+    <body unresolved>
+        
+    
+
+
+<custom-style><style include="ea-shared-styles-base-common"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-headings"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-lists"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-links"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-images"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-headings"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-paragraphs"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-labels"></style></custom-style>
+
+
+    
+        
+            <custom-style>
+                <style>
+                    html {
+                        
+                            --origin-brand-color: #07F468;
+                        
+                            --eaCorporate-landingSection-spacerTop-XS: 32px;
+                        
+                            --eaCorporate-landingSection-spacerTop-SM: 32px;
+                        
+                            --eaCorporate-landingSection-spacerTop-MD: 80px;
+                        
+                            --eaCorporate-landingSection-spacerTop-LG: 104px;
+                        
+                            --eaCorporate-landingSection-spacerTop-XL: 128px;
+                        
+                            --eaCorporate-landingSection-spacerBottom-XS: 32px;
+                        
+                            --eaCorporate-landingSection-spacerBottom-SM: 32px;
+                        
+                            --eaCorporate-landingSection-spacerBottom-MD: 40px;
+                        
+                            --eaCorporate-landingSection-spacerBottom-LG: 48px;
+                        
+                            --eaCorporate-landingSection-spacerBottom-XL: 56px;
+                        
+                            --eaCorporate-standardSection-spacerTop-XS: 48px;
+                        
+                            --eaCorporate-standardSection-spacerTop-SM: 48px;
+                        
+                            --eaCorporate-standardSection-spacerTop-MD: 80px;
+                        
+                            --eaCorporate-standardSection-spacerTop-LG: 80px;
+                        
+                            --eaCorporate-standardSection-spacerTop-XL: 80px;
+                        
+                            --eaCorporate-standardSection-spacerBottom-XS: 48px;
+                        
+                            --eaCorporate-standardSection-spacerBottom-SM: 48px;
+                        
+                            --eaCorporate-standardSection-spacerBottom-MD: 80px;
+                        
+                            --eaCorporate-standardSection-spacerBottom-LG: 80px;
+                        
+                            --eaCorporate-standardSection-spacerBottom-XL: 80px;
+                        
+                            --ea-theme-stream-ui-paddle-default: #161616;
+                        
+                            --ea-theme-stream-ui-paddle-disabled: #BFBFBF;
+                        
+                            --ea-theme-stream-ui-progress-indicator-default: rgb(255,255,255);
+                        
+                            --ea-theme-stream-ui-progress-indicator-hover: rgb(255,255,255);
+                        
+                            --ea-theme-stream-ui-progress-bar-stroke-default: #ff8e8e;
+                        
+                            --ea-theme-stream-ui-progress-bar-stroke-hover: #ff8e8e;
+                        
+                            --ea-theme-stream-ui-progress-bar-fill-hover: #ff8e8e;
+                        
+                            --ea-theme-toaster-eyebrow-font-size-mobile: 16px;
+                        
+                            --ea-theme-toaster-eyebrow-font-size-tablet: 18px;
+                        
+                            --ea-theme-toaster-eyebrow-font-size-desktop: 20px;
+                        
+                            --ea-theme-toaster-copy-font-size-tablet: 16px;
+                        
+                            --ea-theme-toaster-copy-font-size-desktop: 18px;
+                        
+                            --ea-theme-tabs-background-color: transparent;
+                        
+                            --ea-theme-tabs-indicator-color: transparent;
+                        
+                            --ea-theme-tabs-interface-color: #FF4747;
+                        
+                            --ea-theme-tabs-unselected-type: #898D93;
+                        
+                            --ea-theme-tabs-selected-type: #000000;
+                        
+                            --ea-theme-tabs-selected-state: #FCA00D;
+                        
+                             --ea-theme-tabs-accent-elements: rgba(0, 0, 0, 0.08);
+                        
+                            --ea-theme-tabs-inactive-interface-color: rgba(255, 255, 255, 0.1);
+                        
+                            --ea-theme-tabs-tab-text-transform: capitalize;
+                        
+                            --ea-theme-font-header: BluuNext-Bold, sans-serif;
+                        
+                            --ea-theme-font-body: Gilroy W05 Regular;
+                        
+                            --ea-theme-color: #FCA00D;
+                        
+                            --ea-theme-dark-gradient: #0D1042;
+                        
+                            --ea-theme-light-gradient: var(--ea-theme-color);
+                        
+                            --ea-theme-primary-font-family: var(--ea-theme-font-body);
+                        
+                            --ea-theme-secondary-font-family: var(--ea-theme-font-header);
+                        
+                            --ea-theme-typographic-headings-font-family: var(--ea-theme-font-header);
+                        
+                            --ea-text-case: none;
+                        
+                            --ea-theme-body-font-size-mobile: 16px;
+                        
+                            --ea-theme-body-font-size-tablet-landscape: 18px;
+                        
+                            --ea-theme-body-font-size-desktop: 24px;
+                        
+                            --ea-theme-body-line-height-mobile: 1.65;
+                        
+                            --ea-theme-body-line-height-tablet-landscape: 1.5;
+                        
+                            --ea-theme-body-line-height-desktop: 160%;
+                        
+                            --ea-theme-b2-after-h5-margin-top-mobile: 0.5rem;
+                        
+                            --ea-theme-b2-after-h5-margin-top-tablet-landscape: 0.5rem;
+                        
+                            --ea-theme-b2-after-h5-margin-top-desktop: 0.5rem;
+                        
+                            --ea-theme-b2-after-d3-margin-top-mobile: 0.5rem;
+                        
+                            --ea-theme-b2-after-d3-margin-top-tablet-portrait: 0.5rem;
+                        
+                            --ea-theme-b2-after-d3-margin-top-desktop: 0.5rem;
+                        
+                            --ea-theme-d3-font-weight: 700;
+                        
+                            --ea-theme-d3-font-size-mobile: 24px;
+                        
+                            --ea-theme-d3-font-size-tablet-portrait: 42px;
+                        
+                            --ea-theme-d3-font-size-tablet-landscape: 42px;
+                        
+                            --ea-theme-d3-font-size-desktop: 42px;
+                        
+                            --ea-theme-d4-font-weight: 700;
+                        
+                            --ea-theme-d4-font-size-mobile: 24px;
+                        
+                            --ea-theme-d4-font-size-tablet-portrait: 34px;
+                        
+                            --ea-theme-d4-font-size-tablet-landscape: 34px;
+                        
+                            --ea-theme-d4-font-size-desktop: 34px;
+                        
+                            --ea-theme-d4-line-height-mobile: 24px;
+                        
+                            --ea-theme-d4-line-height-tablet-landscape: 40px;
+                        
+                            --ea-theme-d4-line-height-desktop: 40px;
+                        
+                            --ea-theme-h4-line-height-mobile: 24px;
+                        
+                            --ea-theme-h4-line-height-tablet-landscape: 40px;
+                        
+                            --ea-theme-h4-line-height-desktop: 40px;
+                        
+                            --ea-theme-h4-font-weight: var(--ea-theme-header-font-weight-regular);;
+                        
+                            --ea-theme-h4-font-size-mobile: 20px;
+                        
+                            --ea-theme-h4-font-size-tablet-landscape: 34px;
+                        
+                            --ea-theme-h4-font-size-desktop: 34px;
+                        
+                            --ea-theme-h4-after-d3-margin-top-mobile: 1rem;
+                        
+                            --ea-theme-h4-after-d3-margin-top-tablet-portrait: 1rem;
+                        
+                            --ea-theme-h4-after-d3-margin-top-tablet-landscape: 1rem;
+                        
+                            --ea-theme-h4-after-d3-margin-top-desktop: 1rem;
+                        
+                            --ea-theme-h5-font-weight: var(--ea-theme-header-font-weight-bold);
+                        
+                            --ea-theme-h5-line-height-mobile: 1.25;
+                        
+                            --ea-theme-h5-line-height-tablet-landscape: 1.25;
+                        
+                            --ea-theme-h5-line-height-desktop: 1.25;
+                        
+                            --ea-theme-h5-font-size-mobile: 20px;
+                        
+                            --ea-theme-h5-font-size-tablet-landscape: 24px;
+                        
+                            --ea-theme-h5-font-size-desktop: 24px;
+                        
+                            --ea-theme-h5-after-l2-margin-top-mobile: 0.5rem;
+                        
+                            --ea-theme-h5-after-l2-margin-top-tablet-landscape: 0.5rem;
+                        
+                            --ea-theme-h5-after-l2-margin-top-desktop: 0.5rem;
+                        
+                            --ea-theme-h6-font-size-mobile: 20px;
+                        
+                            --ea-theme-h6-font-size-desktop: 24px;
+                        
+                            --ea-theme-h6-font-weight: var(--ea-theme-header-font-weight-regular);
+                        
+                            --ea-theme-h6-line-height-mobile: 1.25;
+                        
+                            --ea-theme-h6-line-height-desktop: 1.25;
+                        
+                            --ea-theme-h6-after-d3-margin-top-mobile: 1rem;
+                        
+                            --ea-theme-h6-after-d3-margin-top-tablet-landscape: 1rem;
+                        
+                            --ea-theme-h6-after-d3-margin-top-desktop: 1rem;
+                        
+                            --ea-theme-l2-font-weight: var(--ea-theme-header-font-weight-bold);
+                        
+                            --ea-theme-l2-font-size-mobile: 14px;
+                        
+                            --ea-theme-l2-font-size-tablet-landscape: 14px;
+                        
+                            --ea-theme-l2-font-size-desktop: 16px;
+                        
+                            --ea-theme-l2-line-height-mobile: 1.35;
+                        
+                            --ea-theme-l2-line-height-tablet-landscape: 1.35;
+                        
+                            --ea-theme-l2-line-height-desktop: 1.35;
+                        
+                            --ea-theme-tabs-accent-elements: transparent;
+                        
+                            --ea-theme-cta-font-weight: 900;
+                        
+                            --ea-theme-cta-font-size-mobile: 16px;
+                        
+                            --ea-theme-cta-line-height-desktop: 100%;
+                        
+                            --ea-theme-cta-line-height-mobile: 100%;
+                        
+                            --ea-theme-cta-line-height-tablet: 100%;
+                        
+                            --ea-theme-cta-letter-spacing: 5%;
+                        
+                            --ea-theme-b2-font-size-desktop: 24px;
+                        
+                            --ea-theme-b2-line-height-desktop: 36px;
+                        
+                            --ea-theme-b2-font-size-tablet-landscape: 18px;
+                        
+                            --ea-theme-b2-line-height-tablet-landscape: 28px;
+                        
+                            --ea-theme-h1-font-size-desktop: 74px;
+                        
+                            --ea-theme-h1-line-height-desktop: 78px;
+                        
+                            --ea-theme-h1-letter-spacing-desktop: -0.02em;
+                        
+                            --ea-theme-h3-font-weight: 600;
+                        
+                            --ea-theme-h3-margin-desktop: 0,0,0,16px;
+                        
+                            --ea-theme-d2-margin-desktop: 0,0,0,24px;
+                        
+                            --ea-theme-local-nav-cta-dropdown-font-size-desktop: 16px;
+                        
+                            --ea-theme-local-nav-shelf-header-font-size-desktop: 18px;
+                        
+                            --ea-theme-local-nav-shelf-header-font-size-tablet-landscape: 16px;
+                        
+                            --ea-theme-local-nav-cta-dropdown-font-size-tablet-landscape: 16px;
+                        
+                            --ea-theme-mobile-nav-cta-dropdown-font-size-mobile: 12px;
+                        
+                            --ea-theme-local-nav-shelf-header-font-family: var(--ea-theme-font-body);
+                        
+                            --ea-theme-h2-margin-tablet-landscape: 12px;
+                        
+                            --ea-theme-d2-font-size-tablet-landscape: 56px;
+                        
+                            --ea-theme-d2-letter-spacing-tablet-landscape: -0.02em;
+                        
+                            --ea-theme-d2-line-height-tablet-landscape: 60px;
+                        
+                            --ea-theme-d2-font-size-desktop: 56px;
+                        
+                            --ea-theme-d2-letter-spacing-desktop: -0.02em;
+                        
+                            --ea-theme-d2-line-height-desktop: 60px;
+                        
+                            --ea-theme-d2-font-size-tablet-portrait: 56px;
+                        
+                            --ea-theme-d2-letter-spacing-tablet-portrait: -0.02em;
+                        
+                            --ea-theme-d2-line-height-tablet-portrait: 60px;
+                        
+                            --ea-theme-d2-font-size-mobile: 32px;
+                        
+                            --ea-theme-d2-letter-spacing-mobile: -0.02em;
+                        
+                            --ea-theme-d2-line-height-mobile: 36px;
+                        
+                            --ea-theme-cta-font-size-desktop: 18px;
+                        
+                            --ea-medium-component-space-tablet-portrait: 32px;
+                        
+                            --ea-medium-component-space-desktop: 24px;
+                        
+                            -ea-theme-d2-font-size-mobile: 48px;
+                        
+                    }
+                </style>
+            </custom-style>
+        
+    
+
+
+
+<ea-elements-loader elements="ea-network-nav, ea-player, ea-type-kit">
+</ea-elements-loader>
+
+
+    <ea-network-nav
+        unresolved
+        userData="/user-data"
+        content="//nds-network-nav.ea.com//pt-br/network-nav"
+        login-url="/login"
+        logout-url="/logout"
+            
+                
+                    
+                        hide-logo
+                    
+                
+            
+    ></ea-network-nav>
+
+
+
+
+
+
+
+    
+        
+            
+                
+
+    
+<ea-elements-loader elements="ea-local-nav-advanced, ea-link">
+</ea-elements-loader>
+<ea-local-nav-advanced
+    
+    
+        home-text="Página inicial"
+        home-tooltip="Página inicial"
+        home-link="/pt-br/games/skate"
+    
+    
+        logo-image="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-nav-logo-white.svg"
+        
+            logo-tooltip=""
+        
+    
+    
+        theme="light"
+    
+    
+        shelf-type="band"
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    unresolved
+>
+    
+
+    
+
+    
+        <a title="Página inicial" href="/pt-br/games/skate">
+            Página inicial
+            
+                <img
+                    src="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-nav-logo-white.svg"
+                    
+                />
+            
+        </a>
+    
+
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="dark"
+                    link-href="/pt-br/games/skate/skate-reel"
+                    link-title="Reels"
+                    link-text="REEL"
+                    unresolved
+                >
+                    <a href="/pt-br/games/skate/skate-reel">REEL</a>
+                </ea-link>
+            
+        
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="dark"
+                    link-href="/pt-br/games/skate/faq"
+                    link-title="Perguntas frequentes"
+                    link-text="Perguntas frequentes"
+                    unresolved
+                >
+                    <a href="/pt-br/games/skate/faq">Perguntas frequentes</a>
+                </ea-link>
+            
+        
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="dark"
+                    link-href="/pt-br/games/skate/news"
+                    link-title="NOTÍCIAS"
+                    link-text="NOTÍCIAS"
+                    unresolved
+                >
+                    <a href="/pt-br/games/skate/news">NOTÍCIAS</a>
+                </ea-link>
+            
+        
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="dark"
+                    link-href="/pt-br/games/skate/history"
+                    link-title="Histórico"
+                    link-text="HISTÓRICO"
+                    unresolved
+                >
+                    <a href="/pt-br/games/skate/history">HISTÓRICO</a>
+                </ea-link>
+            
+        
+    
+        
+            
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav
+    slot="local-nav-shelf-link"
+    toggle-text="COMUNIDADE"
+    theme="light"
+    type="simple"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text=""
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Discord"
+    link-href="https://discord.com/invite/skateea"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://discord.com/invite/skateea">Discord</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Twitter"
+    link-href="https://twitter.com/skate"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://twitter.com/skate">Twitter</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Instagram"
+    link-href="https://www.instagram.com/skateea"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://www.instagram.com/skateea">Instagram</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Facebook"
+    link-href="https://www.facebook.com/SkateEA/"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://www.facebook.com/SkateEA/">Facebook</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="YouTube"
+    link-href="https://www.youtube.com/c/skateEA"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://www.youtube.com/c/skateEA">YouTube</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Reddit"
+    link-href="https://www.reddit.com/r/SkateEA/"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://www.reddit.com/r/SkateEA/">Reddit</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Spotify"
+    link-href="https://open.spotify.com/user/492oejbhtoro9v5djm4f5oi2y?si=66039d039f134fa2"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://open.spotify.com/user/492oejbhtoro9v5djm4f5oi2y?si=66039d039f134fa2">Spotify</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+</ea-local-nav-shelf-sub-nav>
+
+        
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="dark"
+                    link-href="http://www.insertcoinclothing.com/skate/ "
+                    link-title="SkatePal x skate."
+                    link-text="SkatePal x skate."
+                    unresolved
+                >
+                    <a href="http://www.insertcoinclothing.com/skate/ ">SkatePal x skate.</a>
+                </ea-link>
+            
+        
+    
+
+    
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="/pt-br/games/skate/skate-reel"
+        link-title="Reels"
+        link-text="REEL"
+        text-color="dark"
+        unresolved
+    >
+        <a href="/pt-br/games/skate/skate-reel">REEL</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="/pt-br/games/skate/faq"
+        link-title="Perguntas frequentes"
+        link-text="Perguntas frequentes"
+        text-color="dark"
+        unresolved
+    >
+        <a href="/pt-br/games/skate/faq">Perguntas frequentes</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="/pt-br/games/skate/news"
+        link-title="NOTÍCIAS"
+        link-text="NOTÍCIAS"
+        text-color="dark"
+        unresolved
+    >
+        <a href="/pt-br/games/skate/news">NOTÍCIAS</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="/pt-br/games/skate/history"
+        link-title="Histórico"
+        link-text="HISTÓRICO"
+        text-color="dark"
+        unresolved
+    >
+        <a href="/pt-br/games/skate/history">HISTÓRICO</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-advanced">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-advanced
+        
+            slot="local-nav-drawer-link"
+        
+        toggle-text="COMUNIDADE"
+        toggle-tooltip=""
+        theme="light"
+        
+            type="simple"
+        
+        unresolved
+    >
+        
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://discord.com/invite/skateea"
+        link-title=""
+        link-text="Discord"
+        text-color=""
+        unresolved
+    >
+        <a href="https://discord.com/invite/skateea">Discord</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://twitter.com/skate"
+        link-title=""
+        link-text="Twitter"
+        text-color=""
+        unresolved
+    >
+        <a href="https://twitter.com/skate">Twitter</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://www.instagram.com/skateea"
+        link-title=""
+        link-text="Instagram"
+        text-color=""
+        unresolved
+    >
+        <a href="https://www.instagram.com/skateea">Instagram</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://www.facebook.com/SkateEA/"
+        link-title=""
+        link-text="Facebook"
+        text-color=""
+        unresolved
+    >
+        <a href="https://www.facebook.com/SkateEA/">Facebook</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://www.youtube.com/c/skateEA"
+        link-title=""
+        link-text="YouTube"
+        text-color=""
+        unresolved
+    >
+        <a href="https://www.youtube.com/c/skateEA">YouTube</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://www.reddit.com/r/SkateEA/"
+        link-title=""
+        link-text="Reddit"
+        text-color=""
+        unresolved
+    >
+        <a href="https://www.reddit.com/r/SkateEA/">Reddit</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://open.spotify.com/user/492oejbhtoro9v5djm4f5oi2y?si=66039d039f134fa2"
+        link-title=""
+        link-text="Spotify"
+        text-color=""
+        unresolved
+    >
+        <a href="https://open.spotify.com/user/492oejbhtoro9v5djm4f5oi2y?si=66039d039f134fa2">Spotify</a>
+    </ea-link>
+
+
+        
+    </ea-local-nav-drawer-sub-nav-advanced>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="http://www.insertcoinclothing.com/skate/ "
+        link-title="SkatePal x skate."
+        link-text="SkatePal x skate."
+        text-color="dark"
+        unresolved
+    >
+        <a href="http://www.insertcoinclothing.com/skate/ ">SkatePal x skate.</a>
+    </ea-link>
+
+
+        
+    
+
+    
+        
+
+
+    <ea-elements-loader elements="ea-cta-dropdown, ea-hybrid-modal-invoker">
+    </ea-elements-loader>
+
+    
+        <ea-cta-dropdown
+            slot="cta-dropdown"
+            theme="light"
+            cta-title-text="REGISTRO DE INSIDER"
+            cta-link="/pt-br/games/skate/insider-playtest-registration"
+            border-color="none"
+            fill-color="brand"
+            text-color="dark"
+
+            
+            
+            
+            
+            unresolved
+        >
+            
+
+            
+        </ea-cta-dropdown>
+    
+
+
+
+        
+            <ea-elements-loader elements="ea-local-nav-dropdown">
+            </ea-elements-loader>
+            <ea-local-nav-dropdown
+                slot="local-nav-dropdown"
+                theme="light"
+                menu-title=""
+                cta-title-text="REGISTRO DE INSIDER"
+                cta-link="/pt-br/games/skate/insider-playtest-registration"
+                border-color="none"
+                fill-color="brand"
+                text-color="dark"
+                
+                unresolved
+            >
+            
+            
+            </ea-local-nav-dropdown>
+        
+    
+</ea-local-nav-advanced>
+
+
+
+            
+        
+    
+
+
+
+
+
+<main>
+    
+
+
+
+    
+<ea-elements-loader elements="ea-section">
+</ea-elements-loader>
+<ea-section
+    unresolved
+    slot="section"
+    
+    
+        type="railed"
+    
+    
+        layout="100"
+    
+    
+    
+        background-color="none"
+    
+    
+    
+        background-overflow="hidden"
+    
+    
+        spacing-top="none"
+    
+    
+        spacing-bottom="none"
+    
+    
+        mp4-src=""
+    
+    
+        webm-src=""
+    
+    
+    
+>
+    
+    
+
+
+<ea-section-column
+    slot="section-column"
+    
+    
+    
+        text-align="left"
+    
+    
+    
+        mobile-order="0"
+    
+    
+>
+    
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="5rem"
+    
+    
+        small="5rem"
+    
+    
+        medium="5rem"
+    
+    
+        large="8rem"
+    
+    
+        largest="8rem"
+    
+>
+</ea-spacer>
+
+<ea-elements-loader elements="ea-subheading">
+</ea-elements-loader>
+<ea-subheading
+    unresolved
+    
+        type="ordered"
+    
+    
+        layout="large"
+    
+    
+        text-align="left"
+    
+    
+        text-color="dark"
+    
+    
+    
+        title-text="Inscrição nos testes de jogo de skate. insider"
+    
+    
+    
+        spacing-top="small"
+    
+    
+        spacing-bottom="small"
+    
+>
+    
+    
+        <h3>Inscrição nos testes de jogo de skate. insider</h3>
+    
+    
+</ea-subheading>
+
+<ea-elements-loader elements="ea-text">
+</ea-elements-loader>
+<ea-text
+    unresolved
+    slot="text"
+    
+        text-color="dark"
+    
+>
+    <p>Dissemos que voltamos, e ainda estamos trabalhando nisso, mas é hora de você ver o que fizemos até agora. Ainda estamos no começo, mas queremos fazer do jeito certo e para isso queremos que você participe do processo.</p>
+<p>Como skate. insider, você terá a chance de testar versões antecipadas do jogo e oferecer seu feedback durante a nossa jornada de desenvolvimento. Precisamos dimensionar o acesso ao skate. gradualmente, de acordo com o progresso do desenvolvimento, para garantir uma experiência sem problemas. Isso significa que não podemos garantir quando você poderá jogar.</p>
+<p>Para saber mais sobre o programa skate. insider e testes de jogos, consulte as perguntas frequentes <a href="/pt-br/games/skate/faq"><u>aqui</u></a>.</p>
+<p style="text-align: left;">Os testes de jogo do skate. insider serão testes FECHADOS para qualquer pessoa selecionada para participar. O compartilhamento de quaisquer vídeos, imagens, capturas de tela ou streaming de qualquer parte do jogo é proibido. Certifique-se de ler todos os termos e condições antes de se inscrever.</p>
+
+    
+</ea-text>
+
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="1rem"
+    
+    
+        small="1rem"
+    
+    
+        medium="1rem"
+    
+    
+        large="1rem"
+    
+    
+        largest="1rem"
+    
+>
+</ea-spacer>
+
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="https://go.ea.com/skate"
+    
+    
+    
+        link-text="REGISTRE-SE AGORA"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="brand"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="none"
+    
+    
+        target="_self"
+    
+    
+    
+    
+        intent="usp"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://go.ea.com/skate"
+        
+        
+    >
+        
+            REGISTRE-SE AGORA
+        
+    </a>
+</ea-cta>
+
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="2rem"
+    
+    
+        small="2rem"
+    
+    
+        medium="2rem"
+    
+    
+        large="2rem"
+    
+    
+        largest="2rem"
+    
+>
+</ea-spacer>
+
+</ea-section-column>
+
+    
+</ea-section>
+
+
+
+<ea-elements-loader elements="ea-page-background">
+</ea-elements-loader>
+<ea-page-background
+    unresolved
+    layout="fixed"
+    background-color=""
+    
+>
+    
+
+
+    <ea-elements-loader elements="ea-image">
+    </ea-elements-loader>
+    <ea-image
+        unresolved
+        tooltip=""
+        smallest="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.320w.jpg"
+        small="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.768w.jpg"
+        medium="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.1024w.jpg"
+        large="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.1456w.jpg"
+        largest="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.1920w.jpg"
+        
+            allow-renditions
+        
+        
+            disable-stretching
+        
+        
+        
+            slot="image"
+        
+        
+    >
+        <img
+            src="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.320w.jpg"
+            alt=""
+            srcset="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.320w.jpg 320w, https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.768w.jpg 768w, https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.1024w.jpg 1024w, https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.1456w.jpg 1320w, https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-pagebg-white02-xl.jpg.adapt.1920w.jpg 1456w" />
+    </ea-image>
+
+
+
+</ea-page-background>
+
+
+    
+
+    <div>
+        <style>
+ea-section-column.eapl-section-column-100 img,ea-section-column.eapl-section-column-50 img {
+max-width: 100%;
+}
+</style>
+    </div>
+
+
+
+
+
+
+
+    
+        
+            
+                
+
+    
+
+
+    
+
+
+
+
+            
+        
+    
+
+
+
+    
+    <div style="display: none;"></div>
+</main>
+<footer role="contentinfo">
+    
+
+    
+        
+            
+                
+
+    
+<ea-elements-loader elements="ea-local-footer, ea-local-links, ea-local-link, ea-social-links, ea-social-link, ea-hybrid-regional-rating">
+</ea-elements-loader>
+<ea-local-footer
+    theme="light"
+    sal-game-slug="skate"
+    rating-lang="pt-BR"
+    unresolved
+>
+    <ea-local-links
+        slot="local-links"
+        title-text="skate."
+        text-color="light"
+        unresolved
+    >
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/pt-br/games/skate"
+            link-title="Página inicial"
+            link-text="Página inicial"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/pt-br/games/skate"
+                title="Página inicial"
+            >Página inicial</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/pt-br/games/skate/insider-playtest-registration"
+            link-title="Insider"
+            link-text="Insider"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/pt-br/games/skate/insider-playtest-registration"
+                title="Insider"
+            >Insider</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/pt-br/games/skate/faq"
+            link-title="Perguntas frequentes"
+            link-text="Perguntas frequentes"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/pt-br/games/skate/faq"
+                title="Perguntas frequentes"
+            >Perguntas frequentes</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/pt-br/games/skate/skate-reel"
+            link-title="Reels"
+            link-text="Reel"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/pt-br/games/skate/skate-reel"
+                title="Reels"
+            >Reel</a>
+        </ea-local-link>
+    
+    </ea-local-links>
+
+    <ea-social-links
+        slot="social-links"
+        text-color="light"
+        title-text="Participe da Conversa"
+        unresolved
+    >
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.facebook.com/SkateEA/"
+            link-title="Facebook"
+            link-target="_blank"
+            text-color="light"
+            social-network="facebook"
+            unresolved
+        >
+            <a
+                href="https://www.facebook.com/SkateEA/"
+                title="Facebook"
+            >facebook</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://twitter.com/skate"
+            link-title="Twitter:"
+            link-target="_blank"
+            text-color="light"
+            social-network="twitter"
+            unresolved
+        >
+            <a
+                href="https://twitter.com/skate"
+                title="Twitter:"
+            >twitter</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.instagram.com/skateea"
+            link-title="Instagram"
+            link-target="_blank"
+            text-color="light"
+            social-network="instagram"
+            unresolved
+        >
+            <a
+                href="https://www.instagram.com/skateea"
+                title="Instagram"
+            >instagram</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.twitch.tv/ea"
+            link-title="Twitch"
+            link-target="_blank"
+            text-color="light"
+            social-network="twitch"
+            unresolved
+        >
+            <a
+                href="https://www.twitch.tv/ea"
+                title="Twitch"
+            >twitch</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://discord.com/invite/skateea"
+            link-title="Discord"
+            link-target="_blank"
+            text-color="light"
+            social-network="discord"
+            unresolved
+        >
+            <a
+                href="https://discord.com/invite/skateea"
+                title="Discord"
+            >discord</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.reddit.com/r/SkateEA/"
+            link-title="Reddit"
+            link-target="_blank"
+            text-color="light"
+            social-network="reddit"
+            unresolved
+        >
+            <a
+                href="https://www.reddit.com/r/SkateEA/"
+                title="Reddit"
+            >reddit</a>
+        </ea-social-link>
+    
+    </ea-social-links>
+
+    
+        
+<ea-elements-loader elements="ea-studio-link">
+</ea-elements-loader>
+<ea-studio-link
+    unresolved
+    slot="studio-link"
+    link-url="https://www.ea.com"
+    link-title="Electronic Arts"
+    
+    
+        image-smallest="https://media.contentapi.ea.com/content/dam/eacom/skate/common/ea-medallion-white.png"
+        image-small="https://media.contentapi.ea.com/content/dam/eacom/skate/common/ea-medallion-white.png"
+        image-medium="https://media.contentapi.ea.com/content/dam/eacom/skate/common/ea-medallion-white.png"
+        image-large="https://media.contentapi.ea.com/content/dam/eacom/skate/common/ea-medallion-white.png"
+        image-largest="https://media.contentapi.ea.com/content/dam/eacom/skate/common/ea-medallion-white.png"
+        image-alt=""
+        
+        
+    
+>
+    <a
+        href="https://www.ea.com"
+        title="Electronic Arts"
+    ></a>
+</ea-studio-link>
+
+<ea-elements-loader elements="ea-studio-link">
+</ea-elements-loader>
+<ea-studio-link
+    unresolved
+    slot="studio-link"
+    link-url="/ea-studios/full-circle"
+    link-title="Full Circle"
+    
+        image-max-height="55px"
+    
+    
+        image-smallest="https://media.contentapi.ea.com/content/dam/eacom/studios/full-circle/common/fullcircle-placeholder-tile-ea-studios-page.png"
+        image-small="https://media.contentapi.ea.com/content/dam/eacom/studios/full-circle/common/fullcircle-placeholder-tile-ea-studios-page.png"
+        image-medium="https://media.contentapi.ea.com/content/dam/eacom/studios/full-circle/common/fullcircle-placeholder-tile-ea-studios-page.png"
+        image-large="https://media.contentapi.ea.com/content/dam/eacom/studios/full-circle/common/fullcircle-placeholder-tile-ea-studios-page.png"
+        image-largest="https://media.contentapi.ea.com/content/dam/eacom/studios/full-circle/common/fullcircle-placeholder-tile-ea-studios-page.png"
+        image-alt=""
+        
+        
+    
+>
+    <a
+        href="/ea-studios/full-circle"
+        title="Full Circle"
+    ></a>
+</ea-studio-link>
+
+<ea-elements-loader elements="ea-studio-link">
+</ea-elements-loader>
+<ea-studio-link
+    unresolved
+    slot="studio-link"
+    link-url="/games/skate"
+    link-title="skate."
+    
+        image-max-height="55px"
+    
+    
+        image-smallest="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-nav-logo-white.svg"
+        image-small="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-nav-logo-white.svg"
+        image-medium="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-nav-logo-white.svg"
+        image-large="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-nav-logo-white.svg"
+        image-largest="https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-nav-logo-white.svg"
+        image-alt=""
+        
+        
+    
+>
+    <a
+        href="/games/skate"
+        title="skate."
+    ></a>
+</ea-studio-link>
+
+    
+
+    
+
+    
+<ea-elements-loader elements="ea-hybrid-regional-rating"></ea-elements-loader>
+
+<ea-hybrid-regional-rating
+    
+    
+        slug="skate"
+    
+    
+        slot="regional-rating"
+    
+    
+        lang="pt-BR"
+    
+>
+</ea-hybrid-regional-rating>
+
+
+    
+        <ea-legal-disclaimer-text slot="legal-disclaimer-text">
+            <p>&nbsp;</p>
+<div style="position: absolute; left: -10000px; width: 9000px; top: 0px;"><b>© 2017 Electronic Arts Inc.</b></div>
+<div style="position: absolute; left: -10000px; width: 9000px; top: 0px;"><b>© 2017 Electronic Arts Inc.</b></div>
+<div style="position: absolute; left: -10000px; width: 9000px; top: 0px;"><b>© 2017 Electronic Arts Inc.</b></div>
+
+        </ea-legal-disclaimer-text>
+    
+</ea-local-footer>
+
+
+
+            
+        
+    
+
+
+    
+
+    
+        
+            
+                
+
+    
+<ea-elements-loader elements="ea-network-footer, ea-network-legal, ea-link, ea-content-loader">
+</ea-elements-loader>
+<ea-network-footer
+    theme="dark"
+    
+    
+        logo-image="https://media.contentapi.ea.com/content/dam/eacom/pt-br/common/october-ea-ring.png"
+        logo-tooltip=""
+    
+    
+        logo-link-url="https://www.ea.com/pt-br"
+        logo-link-text="EA"
+        logo-link-tooltip="EA"
+    
+    unresolved
+>
+    
+        <img
+            src="https://media.contentapi.ea.com/content/dam/eacom/pt-br/common/october-ea-ring.png"
+            alt=""
+        />
+    
+    
+        
+            <ea-link
+                slot="link"
+                link-href="/pt-br/games"
+                link-title="Procurar jogos"
+                link-text="Procurar jogos"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/pt-br/games"
+                    title="Procurar jogos"
+                >Procurar jogos</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/pt-br/news"
+                link-title="Últimas Notícias"
+                link-text="Últimas Notícias"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/pt-br/news"
+                    title="Últimas Notícias"
+                >Últimas Notícias</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://help.ea.com/br/"
+                link-title="Central de Ajuda"
+                link-text="Central de Ajuda"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://help.ea.com/br/"
+                    title="Central de Ajuda"
+                >Central de Ajuda</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/pt-br/forums"
+                link-title="Fóruns da EA"
+                link-text="Fóruns da EA"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/pt-br/forums"
+                    title="Fóruns da EA"
+                >Fóruns da EA</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="http://www.ea.com/pt-br/about"
+                link-title="Sobre nós"
+                link-text="Sobre nós"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="http://www.ea.com/pt-br/about"
+                    title="Sobre nós"
+                >Sobre nós</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/pt-br/careers"
+                link-title="Carreiras"
+                link-text="Carreiras"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/pt-br/careers"
+                    title="Carreiras"
+                >Carreiras</a>
+            </ea-link>
+        
+    
+    
+    
+<ea-elements-loader elements="ea-locale-selector">
+</ea-elements-loader>
+<ea-locale-selector
+    slot="locale-selector"
+    theme="dark"
+    value="pt-br"
+    label-text=""
+    
+    unresolved
+    >
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="en-us"
+        >United States</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="fr-fr"
+        >France</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="de-de"
+        >Deutschland</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="it-it"
+        >Italia</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="es-es"
+        >España</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="es-mx"
+        >México</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="pt-br"
+        >Brasil</ea-locale-selector-option>
+    
+</ea-locale-selector>
+
+    <ea-network-legal
+        slot="network-legal"
+        copyright-text="© 2024 Electronic Arts Inc."
+        text-color="dark"
+        unresolved
+    >
+        
+            <ea-link
+                slot="link"
+                link-href="http://www.ea.com/pt-br/legal"
+                link-title="Avisos legais e privacidade"
+                link-text="Avisos legais e privacidade"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="http://www.ea.com/pt-br/legal"
+                    title="Avisos legais e privacidade"
+                >Avisos legais e privacidade</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="http://www.ea.com/pt-br/service-updates"
+                link-title="Atualizações do Serviço Online"
+                link-text="Atualizações do Serviço Online"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="http://www.ea.com/pt-br/service-updates"
+                    title="Atualizações do Serviço Online"
+                >Atualizações do Serviço Online</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://www.ea.com/pt-br/terms-of-service"
+                link-title="NOVO Contrato do Usuário"
+                link-text="Contrato do Usuário"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://www.ea.com/pt-br/terms-of-service"
+                    title="NOVO Contrato do Usuário"
+                >Contrato do Usuário</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://www.ea.com/pt-br/legal/privacy-and-cookie-policy"
+                link-title="Política de Privacidade e Cookies (Seus Direitos de Privacidade)"
+                link-text="Política de Privacidade e Cookies (Seus Direitos de Privacidade)"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://www.ea.com/pt-br/legal/privacy-and-cookie-policy"
+                    title="Política de Privacidade e Cookies (Seus Direitos de Privacidade)"
+                >Política de Privacidade e Cookies (Seus Direitos de Privacidade)</a>
+            </ea-link>
+        
+        <ea-content-loader
+            slot="link"
+            content-url="https://www.ea.com/ccpa/footer-link"
+        >
+        </ea-content-loader>
+        
+    </ea-network-legal>
+    
+<ea-elements-loader elements="ea-truste">
+</ea-elements-loader>
+
+
+<script async>
+
+        function createElement(id, hidden) {
+            const element = document.createElement("div");
+
+            element.id = id;
+            element.hidden = hidden;
+
+            return element;
+        }
+
+        function createScriptTag() {
+            const script = document.createElement("script");
+            let src = `//consent.trustarc.com/notice?` +
+                `domain=ea.com&c=teconsent&js=nj&noticeType=bb&text=true&gtm=1&pn=1`;
+
+            if (shouldAutoShowCookiePreferences()) {
+                src = src + "&behavior=expressed";
+            }
+
+            script.src = src;
+            script.setAttribute("crossorigin", "");
+
+            return script;
+        }
+
+        function shouldAutoShowCookiePreferences() {
+            const showCookiePreferencesParam = "show=cookiePreferences";
+            const urlSearchParams = window.location.search.slice(1).split("&");
+
+            return urlSearchParams.includes(showCookiePreferencesParam);
+        }
+
+        function isLocalNDS(componentUrlPrefix) {
+            return componentUrlPrefix && componentUrlPrefix.includes('local');
+        }
+
+        function isNDSBranch(componentUrlPrefix) {
+            return componentUrlPrefix && componentUrlPrefix.includes('branch');
+        }
+
+        function isNDSVersionGreaterOrEqual(componentUrlPrefix) {
+            let ndsVersion = componentUrlPrefix && componentUrlPrefix.match('/release\/([^\/]*)/')[1];
+            let isGreaterOrEqual = ndsVersion && ndsVersion.localeCompare("4.40.5", undefined, { numeric: true, sensitivity: 'base' });
+
+            return isGreaterOrEqual >= 0;
+        }
+
+        const componentUrlPrefix = window.nds.componentUrlPrefix;
+
+        /**
+         * Check for backwards compatibility with NDS version greater or equal to when TrustArc was integrated
+         */
+        if (
+            isLocalNDS(componentUrlPrefix) ||
+            isNDSBranch(componentUrlPrefix) ||
+            isNDSVersionGreaterOrEqual(componentUrlPrefix)
+        )
+        {
+            const trustArcScript = createScriptTag();
+            const elements = document.createDocumentFragment();
+
+            elements.appendChild(createElement("consent_blackbar", false));
+            elements.appendChild(createElement("teconsent", true));
+            elements.appendChild(trustArcScript);
+
+            document.body.appendChild(elements);
+        }
+
+</script>
+<ea-truste
+    unresolved
+    slot="truste"
+    
+        domain="ea.com"
+    
+>
+    <div>
+        
+            <a href="//privacy.truste.com/privacy-seal/validation?rid=f1224642-d137-417f-8ab3-96f47ce12580&amp;lang=pt" target="_blank">
+                <img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=f1a11c5d-0232-4077-8498-2e69a38c1335" alt="TRUSTe"/>
+            </a>
+        
+    </div>
+</ea-truste>
+
+</ea-network-footer>
+
+
+
+            
+        
+    
+
+
+</footer>
+<ea-player player-endpoint="/user-data"></ea-player>
+
+
+    
+        
+            
+                
+<ea-elements-loader elements="ea-modal">
+</ea-elements-loader>
+<ea-modal
+    modal
+    restore-focus-on-close
+    unresolved
+    
+        id="eacomagegate"
+    
+    
+        theme="dark"
+    
+    
+>
+    
+<ea-elements-loader elements="ea-age-gate">
+</ea-elements-loader>
+<ea-age-gate
+    unresolved
+    slot="age-gate"
+    age-gate-id="eacomagegate"
+    
+        age="18"
+    
+    
+        error="Você não pode ver este conteúdo."
+    
+    
+    
+        message="Forneça sua data de nascimento. "
+    
+>
+    
+        
+<ea-elements-loader elements="ea-date-field">
+</ea-elements-loader>
+<ea-date-field
+    
+        slot="date-field"
+    
+    
+        type="date"
+    
+    
+    
+    
+    
+    
+        text-color="light"
+    
+    
+    
+        month-placeholder="MM"
+    
+    
+        day-placeholder="DD"
+    
+    
+        year-placeholder="AAAA"
+    
+    
+    
+        label-text="Digite sua data de nascimento"
+    
+    
+    
+    
+    unresolved
+>
+</ea-date-field>
+
+    
+    
+        
+<ea-elements-loader elements="ea-submit">
+</ea-elements-loader>
+<ea-submit
+    unresolved
+    
+        slot="submit"
+    
+    
+        value-text="Enviar"
+    
+    
+        text-color="light"
+    
+    
+    
+    
+    
+></ea-submit>
+
+    
+</ea-age-gate>
+
+</ea-modal>
+
+            
+        
+    
+
+
+
+
+    
+        
+            
+                <script src="//pl.ea.com/release/4.65.0/elements/browser-support.min.js"></script>
+<script>
+    eaBrowserSupport.requiredFeatures = 'picture';
+    eaBrowserSupport.requiredHeading = 'Este navegador não é suportado';
+    eaBrowserSupport.requiredText = 'Faça o download de um navegador suportado para visualizar esta página da Web.';
+    eaBrowserSupport.recommendedFeatures = 'cssgrid';
+    eaBrowserSupport.recommendedText = 'Este navegador não é recomendado e a página da Web pode não ser exibida corretamente.';
+    eaBrowserSupport.ctas = [{"text":"Faça o download do Chrome","url":"https://www.google.com/chrome/"},{"text":"Faça o download do Firefox","url":"https://www.mozilla.org/firefox/new/"},{"text":"Faça o download do Edge","url":"https://www.microsoft.com/edge/"}];
+    eaBrowserSupport.dismissText = 'Dispensar';
+    eaBrowserSupport.svgLogo = '';
+    eaBrowserSupport.init();
+</script>
+
+            
+        
+    
+
+
+
+
+    <ea-type-kit kit-url="//use.typekit.net/txn1klh.js"></ea-type-kit>
+
+
+    <noscript><img src="https://www.ea.com/akam/13/pixel_464ae2be?a=dD04YjY1NjU3MDc0Y2Q0NzUyNDE2NThmZDMzYjVhMzYyNWM0N2I4YWZkJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></body>
+</html>
+

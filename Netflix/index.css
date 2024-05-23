@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: "Lato", "sans-serif";
+}
+
+header {
+  width: 100%;
+  padding: 30px 0px 0px 145px;
+}
+
+header > img {
+  max-width: 150px;
+}
+body {
+  box-shadow:  00 700px rgba(0,0,0,0,.9) inset;
+  background-image: url(background-netflix.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 0;
+  color: white;
+}
+main{
+  height: calc(100vh - 68.5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  background-color: rgba(0, 0, 0, 0.70);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 68px;
+  gap: 15px;
+}
+
+.inputUser {
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 5px;
+
+}
